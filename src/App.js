@@ -1,8 +1,19 @@
 import './styles/App.css';
 import { Routes, Route, Link } from "react-router-dom";
-import { Fragment } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
+import getData from './api/getData'
+import Quiz from './components/quiz'
+import Results from './components/results'
 
-function App() {
+
+export default function App() {
+  const [data, setData] = useState();
+  const [answers, setAnswers] = useState([]);
+  const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    getData({ setData })
+  }, [])
 
   const Home = () => {
     return [
@@ -12,36 +23,18 @@ function App() {
     ]
   }
 
-  const Quiz = () => {
-    return [
-      <div className='section-title'>
-        <h2>Quiz</h2>
-      </div>
-    ]
-  }
-
-  const Results = () => {
-    return [
-      <div className='section-title'>
-        <h2>Results</h2>
-      </div>
-    ]
-  }
-
   return [
     <Fragment>
       <div className='nav'>
         <Link to="/">Home</Link>
         <Link to="/quiz">Quiz</Link>
-        <Link to="results">Results</Link>
+        <Link to="/results">Results</Link>
       </div>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='quiz' element={<Quiz />} />
-        <Route path='results' element={<Results />} />
+        <Route path='quiz' element={<Quiz data={data} answers={answers} setAnswers={setAnswers} score={score} setScore={setScore} />} />
+        <Route path='results' element={<Results answers={answers} score={score} />} />
       </Routes>
     </Fragment>
   ]
 }
-
-export default App;
