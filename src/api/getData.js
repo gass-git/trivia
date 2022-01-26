@@ -9,8 +9,6 @@ export default function getData({ setData }) {
 
       let dataArray = response.data.results
       setData(dataArray)
-
-      console.log(dataArray)
     })
     .catch((error) => {
       console.log(error)

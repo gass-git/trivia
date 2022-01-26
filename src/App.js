@@ -4,7 +4,7 @@ import React, { useEffect, useState, Fragment } from 'react';
 import getData from './api/getData'
 import Quiz from './components/quiz'
 import Results from './components/results'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
   const [data, setData] = useState();
@@ -25,11 +25,6 @@ export default function App() {
 
   return [
     <Fragment>
-      <div className='nav'>
-        <Link to="/">Home</Link>
-        <Link to="/quiz">Quiz</Link>
-        <Link to="/results">Results</Link>
-      </div>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='quiz' element={<Quiz data={data} answers={answers} setAnswers={setAnswers} score={score} setScore={setScore} />} />
