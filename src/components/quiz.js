@@ -55,21 +55,25 @@ export default function Quiz({ data, answers, setAnswers, score, setScore }) {
     <Container>
       <Row>
         <Col>
-          <Card className="text-center mt-5 mx-auto" style={{ maxWidth: '500px', height: '550px' }}>
+          <Card
+            className="text-center mt-5 mx-auto"
+            style={{ maxWidth: '500px', height: '550px' }}
+          >
 
             <Card.Body>
 
               <Card.Title
-                className="mt-4"
-                style={{ fontSize: '30px', minHeight: '140px' }}
+                className="mt-4 p-3"
+                style={{ minHeight: '140px' }}
               >
-                {title ? title : null}
+                <h2>{title ? title : null}</h2>
               </Card.Title>
 
               <Card.Text
-                style={{ fontSize: '20px', minHeight: '150px' }}
+                className='p-3'
+                style={{ minHeight: '150px' }}
               >
-                {question ? <p>{question}</p> : null}
+                <h5>{question ? question : null}</h5>
               </Card.Text>
 
               <Button

@@ -4,7 +4,6 @@ import getData from './api/getData'
 import Quiz from './components/quiz'
 import Results from './components/results'
 import Home from './components/home'
-import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 export default function App() {

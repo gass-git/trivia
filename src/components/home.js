@@ -23,8 +23,8 @@ export default function Home() {
       </Row>
 
       <Row style={{ marginTop: '100px' }}>
-        <Col className="mx-auto" style={{ textAlign: 'center' }}>
-          <h4>Can you score 100% ?</h4>
+        <Col className="mx-auto" style={{ fontSize: '25px', textAlign: 'center' }}>
+          Can you score 100% ?
         </Col>
       </Row>
 
@@ -32,7 +32,7 @@ export default function Home() {
         <Col style={{ textAlign: 'center' }} >
           <Button
             variant="outline-primary"
-            style={{ fontSize: '20px' }}
+            style={{ fontSize: '20px', width: '150px', height: '50px' }}
             onClick={() => navigate('../quiz')}
           >
             BEGIN
