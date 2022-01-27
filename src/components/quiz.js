@@ -1,53 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Row, Col, Container } from 'react-bootstrap';
 import { specialChars } from '../data/specialChars';
 
 
-export default function Quiz({ data, answers, setAnswers, score, setScore }) {
+export default function Quiz({ data, current, dispatch }) {
 
-  const [current, setCurrent] = useState(0),
-    navigate = useNavigate();
+  const navigate = useNavigate()
+  const title = data[current].category
+  let question = data[current].question
 
-  let question,
-    title,
-    correctAnswer;
-
-  if (data && current < 10) {
-
-    title = data[current].category
-    question = data[current].question
-    correctAnswer = data[current].correct_answer
-
-    // 
-    specialChars.forEach(special => {
-      question = question.replace(special.code, special.char)
-    })
-  }
+  specialChars.forEach(special => {
+    question = question.replace(special.code, special.char)
+  })
 
   function handleClick(answer) {
 
-    let obj = {}
-
-    if (answer === correctAnswer) {
-      obj.question = question
-      obj.isCorrect = true
-      obj.correctAnswer = correctAnswer
-      setAnswers([obj, ...answers])
-      setScore(score + 1)
-    }
-    else {
-      obj.question = question
-      obj.isCorrect = false
-      obj.correctAnswer = correctAnswer
-      setAnswers([obj, ...answers])
-    }
+    dispatch({
+      type: 'checkAnswer',
+      answer: answer
+    })
 
     if (current === data.length - 1) {
       navigate('../results')
     }
 
-    setCurrent(current + 1)
+    dispatch({ type: 'gotoNextQuestion' })
   }
 
 
@@ -96,7 +74,7 @@ export default function Quiz({ data, answers, setAnswers, score, setScore }) {
 
             </Card.Body>
 
-            <Card.Text style={{ fontSize: '18px' }} className="mb-3">{current + 1} of {data.length}</Card.Text>
+            <Card.Text style={{ fontSize: '18px' }} className="mb-3">{current + 1} of 10</Card.Text>
 
           </Card>
         </Col>

@@ -1,18 +1,15 @@
-import { Fragment, useEffect, useState } from 'react'
 import React from 'react-router-dom'
 import { Col, Row, Container, Badge, Table, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
 
-export default function Results({ answers, score, setAnswers, setScore }) {
+export default function Results({ answers, score, dispatch }) {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   function handleClick() {
-
-    setScore(0)
-    setAnswers([])
+    dispatch({ type: 'reset' })
     navigate('/')
   }
 
