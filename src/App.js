@@ -7,13 +7,11 @@ import Home from './components/home'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
-
 export default function App() {
 
   const [data, setData] = useState(),
     [answers, setAnswers] = useState([]),
     [score, setScore] = useState(0);
-
 
 
   useEffect(() => {

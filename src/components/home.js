@@ -31,9 +31,9 @@ export default function Home() {
       <Row className="mt-5">
         <Col style={{ textAlign: 'center' }} >
           <Button
-            variant="outline-dark"
+            variant="outline-primary"
             style={{ fontSize: '20px' }}
-            onClick={() => navigate('quiz')}
+            onClick={() => navigate('../quiz')}
           >
             BEGIN
           </Button>
