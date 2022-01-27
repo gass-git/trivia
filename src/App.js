@@ -29,6 +29,16 @@ function appReducer(state, action) {
         question = question.replace(special.code, special.char)
       })
 
+      /** 
+       * @abstract 
+       * 
+       * Populate the object and update the
+       * score.
+       */
+      obj.id = current
+      obj.question = question
+      obj.correctAnswer = correctAnswer
+
       if (action.answer === correctAnswer) {
         obj.isCorrect = true
         newScore = score + 1
@@ -37,10 +47,6 @@ function appReducer(state, action) {
         obj.isCorrect = false
         newScore = score
       }
-
-      // Populate the rest of the object
-      obj.question = question
-      obj.correctAnswer = correctAnswer
 
       return {
         ...state,

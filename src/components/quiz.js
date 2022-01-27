@@ -33,7 +33,7 @@ export default function Quiz() {
   }
 
   return [
-    <Container>
+    <Container key='quiz-container-key'>
       <Row>
         <Col>
           <Card
@@ -50,9 +50,9 @@ export default function Quiz() {
 
               <Card.Text
                 className='p-3'
-                style={{ minHeight: '150px' }}
+                style={{ minHeight: '150px', fontSize: '20px' }}
               >
-                <h5>{question ? question : null}</h5>
+                {question ? question : null}
               </Card.Text>
 
               <Button

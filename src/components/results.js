@@ -18,7 +18,7 @@ export default function Results() {
 
   return [
 
-    <Container className="mt-4">
+    <Container className="mt-4" key='results-container-key'>
       <Row>
         <Col style={{ textAlign: 'center' }}>
           <h2>You scored</h2>
@@ -38,9 +38,9 @@ export default function Results() {
             </thead>
             <tbody>
               {
-                answers.map((answer, i) => {
+                answers.map((answer) => {
                   return [
-                    <tr>
+                    <tr key={answer.id}>
                       <td className="align-middle" style={{ textAlign: 'center' }}>
                         <h6>
                           {
