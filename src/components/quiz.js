@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Row, Col, Container } from 'react-bootstrap';
 import { specialChars } from '../data/specialChars';
+import { AppContext } from '../App';
 
+export default function Quiz() {
 
-export default function Quiz({ data, current, dispatch }) {
+  const { state, dispatch } = useContext(AppContext)
+  const [data, current] = [state.data, state.current]
 
   const navigate = useNavigate()
   const title = data[current].category
@@ -74,7 +77,7 @@ export default function Quiz({ data, current, dispatch }) {
 
             </Card.Body>
 
-            <Card.Text style={{ fontSize: '18px' }} className="mb-3">{current + 1} of 10</Card.Text>
+            <Card.Text style={{ fontSize: '18px' }} className="mb-3">{current + 1} of {data.length}</Card.Text>
 
           </Card>
         </Col>

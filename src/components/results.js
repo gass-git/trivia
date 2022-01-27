@@ -1,11 +1,14 @@
-import React from 'react-router-dom'
+import React, { useContext } from 'react'
 import { Col, Row, Container, Badge, Table, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../App'
 
-export default function Results({ answers, score, dispatch }) {
+export default function Results() {
 
+  const { state, dispatch } = useContext(AppContext)
+  const [score, answers] = [state.score, state.answers]
   const navigate = useNavigate()
 
   function handleClick() {

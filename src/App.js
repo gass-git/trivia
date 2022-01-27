@@ -6,6 +6,7 @@ import Results from './components/results'
 import Home from './components/home'
 import { specialChars } from "../src/data/specialChars"
 
+export const AppContext = React.createContext(null)
 
 function appReducer(state, action) {
   switch (action.type) {
@@ -82,16 +83,12 @@ export default function App() {
   }, [])
 
   return [
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route
-        path='quiz'
-        element={<Quiz data={state.data} current={state.current} dispatch={dispatch} />}
-      />
-      <Route
-        path='results'
-        element={<Results answers={state.answers} score={state.score} dispatch={dispatch} />}
-      />
-    </Routes>
+    <AppContext.Provider value={{ state, dispatch }}>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='quiz' element={<Quiz />} />
+        <Route path='results' element={<Results />} />
+      </Routes>
+    </AppContext.Provider>
   ]
 }
