@@ -18,26 +18,22 @@ export default function Results({ answers, score, setAnswers, setScore }) {
 
   return [
 
-    <Container className="mt-5">
+    <Container className="mt-4">
       <Row>
-        <Col></Col>
-        <Col xs={8} style={{ textAlign: 'center' }}>
+        <Col style={{ textAlign: 'center' }}>
           <h2>You scored</h2>
           <h3>{score} / {answers.length}</h3>
         </Col>
-        <Col></Col>
       </Row>
 
-
-      <Row className="mt-2">
-        <Col></Col>
-        <Col xs={8}>
-          <Table striped bordered hover>
+      <Row className="mt-4 justify-content-center">
+        <Col style={{ maxWidth: '700px' }}>
+          <Table bordered hover>
             <thead>
               <tr>
-                <th>Is it true or false?</th>
-                <th>Question</th>
-                <th>Correct Answer?</th>
+                <th style={{ width: '100px', textAlign: 'center' }}>True?</th>
+                <th style={{ textAlign: 'center' }}>Question</th>
+                <th style={{ width: '100px', textAlign: 'center' }}>Correct?</th>
               </tr>
             </thead>
             <tbody>
@@ -45,23 +41,24 @@ export default function Results({ answers, score, setAnswers, setScore }) {
                 answers.map((answer, i) => {
                   return [
                     <tr>
-                      <td>
-                        <h5>
+                      <td className="align-middle" style={{ textAlign: 'center' }}>
+                        <h6>
                           {
                             answer.correctAnswer === 'True' ?
-                              <Badge bg="success">True</Badge>
+                              <Badge bg="success">YES</Badge>
                               :
-                              <Badge bg="secondary">False</Badge>
+                              <Badge bg="secondary">NO</Badge>
                           }
-                        </h5>
+                        </h6>
                       </td>
                       <td>{answer.question}</td>
-                      <td>{
-                        answer.isCorrect ?
-                          <FontAwesomeIcon style={{ color: 'green', fontSize: '30px' }} icon={faCheck} />
-                          :
-                          <FontAwesomeIcon style={{ color: 'red', fontSize: '30px' }} icon={faTimes} />
-                      }
+                      <td className="align-middle" style={{ textAlign: 'center' }}>
+                        {
+                          answer.isCorrect ?
+                            <FontAwesomeIcon style={{ color: 'green', fontSize: '25px' }} icon={faCheck} />
+                            :
+                            <FontAwesomeIcon style={{ color: 'red', fontSize: '25px' }} icon={faTimes} />
+                        }
                       </td>
                     </tr>
                   ]
@@ -70,15 +67,12 @@ export default function Results({ answers, score, setAnswers, setScore }) {
             </tbody>
           </Table>
         </Col>
-        <Col></Col>
       </Row>
 
-      <Row className="mt-3">
-        <Col></Col>
-        <Col xs={8} style={{ textAlign: 'center' }}>
-          <Button onClick={() => handleClick()}>PLAY AGAIN ?</Button>
+      <Row className="mt-4 mb-5">
+        <Col style={{ textAlign: 'center' }}>
+          <Button variant='outline-primary' onClick={() => handleClick()}>PLAY AGAIN ?</Button>
         </Col>
-        <Col></Col>
       </Row>
 
     </Container >

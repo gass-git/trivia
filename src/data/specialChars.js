@@ -20,5 +20,10 @@ export const specialChars = [
   { code: /&#181;/g, char: 'µ' },
   { code: /&Yacute;/g, char: 'Ý' },
   { code: /&#159;/g, char: 'Ÿ' },
-  { code: /&#167;/g, char: '§' }
+  { code: /&#167;/g, char: '§' },
+  { code: /&ldquo;/g, char: '“ ”' },
+  { code: /&rdquo;/g, char: '“ ”' },
+  { code: / &Aring;/g, char: 'Å' }
 ]
+
+//&rdquo;

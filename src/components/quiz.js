@@ -29,10 +29,7 @@ export default function Quiz({ data, answers, setAnswers, score, setScore }) {
 
     let obj = {}
 
-    if (current === data.length - 1) {
-      navigate('../results')
-    }
-    else if (answer === correctAnswer) {
+    if (answer === correctAnswer) {
       obj.question = question
       obj.isCorrect = true
       obj.correctAnswer = correctAnswer
@@ -44,6 +41,10 @@ export default function Quiz({ data, answers, setAnswers, score, setScore }) {
       obj.isCorrect = false
       obj.correctAnswer = correctAnswer
       setAnswers([obj, ...answers])
+    }
+
+    if (current === data.length - 1) {
+      navigate('../results')
     }
 
     setCurrent(current + 1)

@@ -18,7 +18,7 @@ export default function Home() {
 
       <Row style={{ marginTop: '100px' }}>
         <Col className="mx-auto" style={{ textAlign: 'center', maxWidth: '400px' }}>
-          <h4>You will be presented with 10 True or False questions.</h4>
+          <h4>You will be presented with <span className="text-primary">10 True or False</span> questions.</h4>
         </Col>
       </Row>
 
