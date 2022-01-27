@@ -1,50 +1,57 @@
-import { Routes, Route } from "react-router-dom"
 import React, { useEffect, useReducer } from 'react'
-import getData from './api/getData'
-import Quiz from './components/quiz'
-import Results from './components/results'
-import Home from './components/home'
+import { Routes, Route } from "react-router-dom"
 import { specialChars } from "../src/data/specialChars"
+
+// API
+import getData from './api/getData'
+
+// Components
+import Quiz from './components/Quiz'
+import Results from './components/Results'
+import Home from './components/Home'
 
 export const AppContext = React.createContext(null)
 
 function appReducer(state, action) {
+
+  const { data, answers, score, current } = state
+
   switch (action.type) {
 
     case 'checkAnswer':
-
       let obj = {}
       let newScore
-      let question = state.data[state.current].question
-      let correctAnswer = state.data[state.current].correct_answer
+      let question = data[current].question
+      let correctAnswer = data[current].correct_answer
 
+      // Fix question      
       specialChars.forEach(special => {
         question = question.replace(special.code, special.char)
       })
 
-
       if (action.answer === correctAnswer) {
         obj.isCorrect = true
-        newScore = state.score + 1
+        newScore = score + 1
       }
       else {
         obj.isCorrect = false
-        newScore = state.score
+        newScore = score
       }
 
+      // Populate the rest of the object
       obj.question = question
       obj.correctAnswer = correctAnswer
 
       return {
         ...state,
-        answers: [obj, ...state.answers],
+        answers: [obj, ...answers],
         score: newScore
       }
 
     case 'gotoNextQuestion':
       return {
         ...state,
-        current: state.current + 1
+        current: current + 1
       }
 
     case 'updateData':
@@ -61,12 +68,10 @@ function appReducer(state, action) {
         current: 0
       }
 
-
     default:
       return initialState
   }
 }
-
 const initialState = {
   data: null,
   answers: [],

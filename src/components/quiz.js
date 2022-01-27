@@ -13,6 +13,7 @@ export default function Quiz() {
   const title = data[current].category
   let question = data[current].question
 
+  // Fix question 
   specialChars.forEach(special => {
     question = question.replace(special.code, special.char)
   })
@@ -31,7 +32,6 @@ export default function Quiz() {
     dispatch({ type: 'gotoNextQuestion' })
   }
 
-
   return [
     <Container>
       <Row>
@@ -40,9 +40,7 @@ export default function Quiz() {
             className="text-center mt-5 mx-auto"
             style={{ maxWidth: '500px', height: '550px' }}
           >
-
             <Card.Body>
-
               <Card.Title
                 className="mt-4 p-3"
                 style={{ minHeight: '140px' }}
