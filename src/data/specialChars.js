@@ -25,5 +25,3 @@ export const specialChars = [
   { code: /&rdquo;/g, char: '“ ”' },
   { code: / &Aring;/g, char: 'Å' }
 ]
-
-//&rdquo;
