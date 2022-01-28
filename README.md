@@ -19,7 +19,7 @@ All CSS styles are in custom.scss
 
 ## Fixing question strings
 
-In data/specialChars.js are all the HTML codes that will
-be replace with the corresponding char. This is to avoid 
+In `data/specialChars.js` are all the HTML codes that will
+be replaced with the corresponding character. This is to avoid 
 rendering questions with HTML codes.
 
