@@ -6,9 +6,9 @@ import { specialChars } from "../src/data/specialChars.js";
 import getData from './api/getData'
 
 // Components
-import Quiz from './components/Quiz'
-import Results from './components/Results'
-import Home from './components/Home'
+import Quiz from './components/Quiz.js';
+import Results from './components/Results.js';
+import Home from './components/Home.js';
 
 export const AppContext = React.createContext(null)
 
