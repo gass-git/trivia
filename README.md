@@ -25,5 +25,5 @@ updated with more special HTML codes in case is necessary.
 
 ## CSS Hover effect for touch screens
 
-Is disabled to enhance the use experience. It can be enabled of disabled
+Is disabled to enhance the use experience. It can be enabled or disabled
 in `custom.scss`
