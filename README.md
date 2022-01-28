@@ -3,7 +3,7 @@ Ten questions trivia app.
 
 ## Instructions to run the App
 
-### Install Dependencies
+### Install dependencies
 
 ```bash
 npm install
