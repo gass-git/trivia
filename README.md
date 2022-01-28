@@ -15,11 +15,15 @@ npm start
 
 ## Styles
 
-All CSS styles are in custom.scss
+All styles can be found in `custom.scss`
 
 ## Fixing question strings
 
-In `data/specialChars.js` are all the HTML codes that will
-be replaced with the corresponding character. This is to avoid 
-rendering questions with HTML codes.
+In `data/specialChars.js` are all the special HTML codes that will
+be replaced with the corresponding character. This array can be 
+updated with more special HTML codes in case is necessary.
 
+## CSS Hover effect for touch screens
+
+Is disabled to enhance the use experience. It can be enabled or disabled
+in `custom.scss`
