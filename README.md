@@ -15,7 +15,7 @@ npm start
 
 ## Styles
 
-All CSS styles are in custom.scss
+All styles can be found in `custom.scss`
 
 ## Fixing question strings
 
