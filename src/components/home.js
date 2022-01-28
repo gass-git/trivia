@@ -19,7 +19,7 @@ export default function Home() {
         </Row>
 
         {/* SHORT EXPLAINER */}
-        <Row style={{ marginTop: '80px' }}>
+        <Row style={{ marginTop: '80px', padding: '0 25px 0 25px' }}>
           <Col className="mx-auto col-style">
             You will be presented with 10
             {' '}<strong className="text-success">True</strong>  or

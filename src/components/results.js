@@ -79,9 +79,9 @@ export default function Results() {
             {/* TABLE HEADER */}
             <thead>
               <tr>
-                <th style={{ width: '100px', textAlign: 'center' }}>True?</th>
+                <th style={{ minWidth: '80px', textAlign: 'center' }}>True?</th>
                 <th style={{ textAlign: 'center' }}>Question</th>
-                <th style={{ width: '100px', textAlign: 'center' }}>Correct?</th>
+                <th style={{ maxWidth: '100px', textAlign: 'center' }}>Correct?</th>
               </tr>
             </thead>
 

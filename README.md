@@ -12,3 +12,14 @@ npm install
 ```bash
 npm start
 ```
+
+## Styles
+
+All CSS styles are in custom.scss
+
+## Fixing question strings
+
+In data/specialChars.js are all the HTML codes that will
+be replace with the corresponding char. This is to avoid 
+rendering questions with HTML codes.
+

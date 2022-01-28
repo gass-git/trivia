@@ -58,6 +58,7 @@ export default function Quiz() {
 
                 {/* BUTTONS */}
                 <Button
+                  id="quiz-btn-false"
                   className="m-2 btn-lg"
                   variant="outline-danger"
                   onClick={() => handleClick('False')}
@@ -65,6 +66,7 @@ export default function Quiz() {
                   False
                 </Button>
                 <Button
+                  id="quiz-btn-true"
                   className="m-2 btn-lg"
                   variant="outline-success"
                   onClick={() => handleClick('True')}

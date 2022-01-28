@@ -1,4 +1,9 @@
-$input-btn-focus-width:         0rem !default;
+$input-btn-focus-width: 0rem !default;
+
+body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 /* Global styles */
 .btn-lg{
@@ -52,6 +57,18 @@ $input-btn-focus-width:         0rem !default;
 @media screen and (max-width: 600px) {
   #quiz-card{
     border:none!important;
+  }
+}
+
+/* Touch screens */
+@media (hover: none) and (pointer: coarse) {
+  #quiz-btn-false:hover {
+    background-color: transparent!important;
+    color: #d9534f;
+  }
+  #quiz-btn-true:hover {
+    background-color: transparent!important;
+    color:#198754;
   }
 }
 
