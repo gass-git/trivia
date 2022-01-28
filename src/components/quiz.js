@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Row, Col, Container } from 'react-bootstrap';
-import { specialChars } from '../data/specialChars.js';
-import { AppContext } from '../App.js';
+import { specialChars } from '../data/specialChars';
+import { AppContext } from '../App';
 
 export default function Quiz() {
 
