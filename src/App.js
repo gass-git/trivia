@@ -1,6 +1,6 @@
-import React, { useEffect, useReducer } from 'react'
-import { Routes, Route } from "react-router-dom"
-import { specialChars } from "../src/data/specialChars"
+import React, { useEffect, useReducer } from 'react';
+import { Routes, Route } from "react-router-dom";
+import { specialChars } from "../src/data/specialChars.js";
 
 // API
 import getData from './api/getData'

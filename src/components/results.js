@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
-import { Col, Row, Container, Badge, Table, Button } from 'react-bootstrap'
+import React, { useContext } from 'react';
+import { Col, Row, Container, Badge, Table, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
-import { AppContext } from '../App'
+import { AppContext } from '../App.js';
 
 export default function Results() {
 
