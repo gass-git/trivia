@@ -16,9 +16,54 @@ export default function Results() {
     navigate('/')
   }
 
-  return [
+  /**
+   * @abstract
+   * 
+   * This component maps the answers array
+   * to build the table body.
+   */
+  const TableBody = () => {
+    return [
+      <tbody key='table-body-key'>
+        {answers.map((answer) => {
+          return [
+            <tr key={answer.id}>
 
-    <Container className="mt-4" key='results-container-key'>
+              {/* TRUE OR FALSE BADGE */}
+              <td className="align-middle" style={{ textAlign: 'center' }}>
+                <h6>
+                  {
+                    answer.correctAnswer === 'True' ?
+                      <Badge bg="success">YES</Badge>
+                      :
+                      <Badge bg="secondary">NO</Badge>
+                  }
+                </h6>
+              </td>
+
+              {/* QUESTION */}
+              <td>{answer.question}</td>
+
+              {/* CHECK OR CROSS ICON */}
+              <td className="align-middle" style={{ textAlign: 'center' }}>
+                {
+                  answer.isCorrect ?
+                    <FontAwesomeIcon icon={faCheck} className='check' />
+                    :
+                    <FontAwesomeIcon icon={faTimes} className='cross' />
+                }
+              </td>
+            </tr>
+          ]
+        })}
+      </tbody>
+    ]
+  }
+
+  return [
+    <Container className="mt-5" key='results-container-key'>
+
+      {/* SCORE INFO */}
       <Row>
         <Col style={{ textAlign: 'center' }}>
           <h2>You scored</h2>
@@ -26,9 +71,12 @@ export default function Results() {
         </Col>
       </Row>
 
+      {/* TABLE */}
       <Row className="mt-4 justify-content-center">
         <Col style={{ maxWidth: '700px' }}>
           <Table bordered hover>
+
+            {/* TABLE HEADER */}
             <thead>
               <tr>
                 <th style={{ width: '100px', textAlign: 'center' }}>True?</th>
@@ -36,42 +84,23 @@ export default function Results() {
                 <th style={{ width: '100px', textAlign: 'center' }}>Correct?</th>
               </tr>
             </thead>
-            <tbody>
-              {
-                answers.map((answer) => {
-                  return [
-                    <tr key={answer.id}>
-                      <td className="align-middle" style={{ textAlign: 'center' }}>
-                        <h6>
-                          {
-                            answer.correctAnswer === 'True' ?
-                              <Badge bg="success">YES</Badge>
-                              :
-                              <Badge bg="secondary">NO</Badge>
-                          }
-                        </h6>
-                      </td>
-                      <td>{answer.question}</td>
-                      <td className="align-middle" style={{ textAlign: 'center' }}>
-                        {
-                          answer.isCorrect ?
-                            <FontAwesomeIcon style={{ color: 'green', fontSize: '25px' }} icon={faCheck} />
-                            :
-                            <FontAwesomeIcon style={{ color: 'red', fontSize: '25px' }} icon={faTimes} />
-                        }
-                      </td>
-                    </tr>
-                  ]
-                })
-              }
-            </tbody>
+
+            {/* TABLE BODY */}
+            <TableBody />
+
           </Table>
         </Col>
       </Row>
 
       <Row className="mt-4 mb-5">
         <Col style={{ textAlign: 'center' }}>
-          <Button variant='outline-primary' onClick={() => handleClick()}>PLAY AGAIN ?</Button>
+          <Button
+            className='btn-lg'
+            variant='outline-dark'
+            onClick={() => handleClick()}
+          >
+            Play again ?
+          </Button>
         </Col>
       </Row>
 

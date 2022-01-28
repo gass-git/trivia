@@ -2,43 +2,52 @@ import React from 'react-dom'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
+
 export default function Home() {
 
   const navigate = useNavigate()
 
   return [
-    <Container className="mt-5">
+    <div id='home-wrapper' className="min-vh-100 d-flex align-items-center">
+      <Container className="align-middle" style={{ width: '450px' }}>
 
-      <Row>
-        <Col style={{ textAlign: 'center' }}>
-          <h2>Welcome to the Trivia Challenge!</h2>
-        </Col>
-      </Row>
+        {/* WELCOME MESSAGE */}
+        <Row>
+          <Col style={{ textAlign: 'center' }}>
+            <h1>Welcome to the Trivia Challenge!</h1>
+          </Col>
+        </Row>
 
-      <Row style={{ marginTop: '100px' }}>
-        <Col className="mx-auto" style={{ textAlign: 'center', maxWidth: '400px' }}>
-          <h4>You will be presented with <span className="text-primary">10 True or False</span> questions.</h4>
-        </Col>
-      </Row>
+        {/* SHORT EXPLAINER */}
+        <Row style={{ marginTop: '80px' }}>
+          <Col className="mx-auto col-style">
+            You will be presented with 10
+            {' '}<strong className="text-success">True</strong>  or
+            {' '}<strong className="text-danger">False</strong> questions.
+          </Col>
+        </Row>
 
-      <Row style={{ marginTop: '100px' }}>
-        <Col className="mx-auto" style={{ fontSize: '25px', textAlign: 'center' }}>
-          Can you score 100% ?
-        </Col>
-      </Row>
+        {/* THIRD PARAGRAPH */}
+        <Row style={{ marginTop: '70px' }}>
+          <Col className="mx-auto col-style">
+            Can you score <strong>100%</strong> ?
+          </Col>
+        </Row>
 
-      <Row className="mt-5">
-        <Col style={{ textAlign: 'center' }} >
-          <Button
-            variant="outline-primary"
-            style={{ fontSize: '20px', width: '150px', height: '50px' }}
-            onClick={() => navigate('../quiz')}
-          >
-            BEGIN
-          </Button>
-        </Col>
-      </Row>
+        {/* START BUTTON */}
+        <Row className="mt-4">
+          <Col style={{ textAlign: 'center' }} >
+            <Button
+              className='btn-lg'
+              variant='outline-dark'
+              onClick={() => navigate('../quiz')}
+            >
+              <span className='m-3'>Get started</span>
+            </Button>
+          </Col>
+        </Row>
 
-    </Container>
+      </Container>
+    </div>
   ]
 }

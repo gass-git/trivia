@@ -33,53 +33,55 @@ export default function Quiz() {
   }
 
   return [
-    <Container key='quiz-container-key'>
-      <Row>
-        <Col>
-          <Card
-            className="text-center mt-5 mx-auto"
-            style={{ maxWidth: '500px', height: '550px' }}
-          >
-            <Card.Body>
-              <Card.Title
-                className="mt-4 p-3"
-                style={{ minHeight: '140px' }}
-              >
-                <h2>{title ? title : null}</h2>
-              </Card.Title>
+    <div id='quiz-wrapper' className="min-vh-100 d-flex align-items-center">
+      <Container key='quiz-container-key'>
+        <Row>
+          <Col>
+            <Card id='quiz-card' className="text-center mx-auto custom-card-size">
+              <Card.Body>
 
-              <Card.Text
-                className='p-3'
-                style={{ minHeight: '150px', fontSize: '20px' }}
-              >
-                {question ? question : null}
+                {/* TITLE */}
+                <Card.Title
+                  className="mt-3 p-3"
+                  style={{ minHeight: '140px' }}
+                >
+                  <h2>{title ? title : null}</h2>
+                </Card.Title>
+
+                {/* QUESTION */}
+                <Card.Text
+                  className='p-3 fs-20'
+                  style={{ minHeight: '150px' }}
+                >
+                  {question ? question : null}
+                </Card.Text>
+
+                {/* BUTTONS */}
+                <Button
+                  className="m-2 btn-lg"
+                  variant="outline-danger"
+                  onClick={() => handleClick('False')}
+                >
+                  False
+                </Button>
+                <Button
+                  className="m-2 btn-lg"
+                  variant="outline-success"
+                  onClick={() => handleClick('True')}
+                >
+                  True
+                </Button>
+
+              </Card.Body>
+
+              <Card.Text className="mb-3 fs-18">
+                {current + 1} of {data.length}
               </Card.Text>
 
-              <Button
-                className="m-2"
-                variant="outline-danger"
-                style={{ fontSize: '20px', width: '100px' }}
-                onClick={() => handleClick('False')}
-              >
-                False
-              </Button>
-
-              <Button
-                className="m-2"
-                variant="outline-success"
-                style={{ fontSize: '20px', width: '100px' }}
-                onClick={() => handleClick('True')}
-              >
-                True
-              </Button>
-
-            </Card.Body>
-
-            <Card.Text style={{ fontSize: '18px' }} className="mb-3">{current + 1} of {data.length}</Card.Text>
-
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   ]
 }
