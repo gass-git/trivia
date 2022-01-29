@@ -1,11 +1,28 @@
-import React from 'react-dom';
+import React, { useContext, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-
+import { AppContext } from '../App';
 
 export default function Home() {
 
+  const { state, dispatch } = useContext(AppContext)
+  const [current, answers] = [state.current, state.answers]
   const navigate = useNavigate()
+
+  /**
+   * @abstract
+   * 
+   * Reset the state only if the trivia has
+   * been completed. This condition allows the user
+   * to navigate back to home and forward to the trivia
+   * and continue where he left of.
+   * 
+   */
+  useEffect(() => {
+    if (current === answers.length - 1) {
+      dispatch({ type: 'reset' })
+    }
+  }, [current, answers, dispatch])
 
   return [
     <div id='home-wrapper' className="min-vh-100 d-flex align-items-center">
@@ -19,7 +36,7 @@ export default function Home() {
         </Row>
 
         {/* SHORT EXPLAINER */}
-        <Row style={{ marginTop: '80px', padding: '0 25px 0 25px' }}>
+        <Row className='row-one'>
           <Col className="mx-auto col-style">
             You will be presented with 10
             {' '}<strong className="text-success">True</strong>  or
@@ -28,7 +45,7 @@ export default function Home() {
         </Row>
 
         {/* THIRD PARAGRAPH */}
-        <Row style={{ marginTop: '70px' }}>
+        <Row className="row-two">
           <Col className="mx-auto col-style">
             Can you score <strong>100%</strong> ?
           </Col>

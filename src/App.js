@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { specialChars } from "../src/data/specialChars.js";
 
 // API
-import getData from './api/getData'
+import getData from './api/getData';
 
 // Components
 import Quiz from './components/quiz';
@@ -12,8 +12,10 @@ import Home from './components/home';
 
 export const AppContext = React.createContext(null)
 
+/**
+ * @abstract State managment
+ */
 function appReducer(state, action) {
-
   const { data, answers, score, current } = state
 
   switch (action.type) {
@@ -78,6 +80,10 @@ function appReducer(state, action) {
       return initialState
   }
 }
+
+/**
+ * @abstract Initial State
+ */
 const initialState = {
   data: null,
   answers: [],
@@ -96,6 +102,7 @@ export default function App() {
   return [
     <AppContext.Provider value={{ state, dispatch }}>
       <Routes>
+        <Route path='*' element={<Home />} />
         <Route path='/' element={<Home />} />
         <Route path='quiz' element={<Quiz />} />
         <Route path='results' element={<Results />} />

@@ -10,12 +10,25 @@ body{
   font-size:21px!important;
   min-width: 100px!important;
 }
+.fs-18{
+  font-size:18px;
+}
+.fs-20{
+  font-size:20px;
+}
 
 /* Home styles */
 #home-wrapper{
   margin-top: -100px;
 }
-.col-style{
+#home-wrapper .row-one{
+  margin-top: 80px;
+  padding:0 25px 0 25px;
+}
+#home-wrapper .row-two{
+  margin-top:70px;
+}
+#home-wrapper .col-style{
   text-align: center;
   font-size:25px;
 }
@@ -24,15 +37,9 @@ body{
 #quiz-wrapper{
   margin-top: -80px;
 }
-.custom-card-size{
+#quiz-wrapper .custom-card-size{
   max-width: 500px;
   height:550px;
-}
-.fs-18{
-  font-size:18px;
-}
-.fs-20{
-  font-size:20px;
 }
 
 /* Results styles */

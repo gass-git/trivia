@@ -6,38 +6,63 @@ import { AppContext } from '../App';
 
 export default function Quiz() {
 
+  // States
   const { state, dispatch } = useContext(AppContext)
   const [data, current] = [state.data, state.current]
 
+  // Other variables
   const navigate = useNavigate()
   const title = data[current].category
   let question = data[current].question
 
-  // Fix question 
+  /**
+   * @abstract
+   * 
+   * Loop to replace special HTML code inside
+   * the question strings.
+   * 
+   * specialChars array can be found in 'src/data/' directory
+   * 
+   */
   specialChars.forEach(special => {
     question = question.replace(special.code, special.char)
   })
 
+  /**
+   * @abstract 
+   * 
+   * Handle the true and false button clicks
+   */
   function handleClick(answer) {
 
-    dispatch({
-      type: 'checkAnswer',
-      answer: answer
-    })
+    dispatch({ type: 'checkAnswer', answer: answer })
 
+    /**
+     * Once the user answers the last question, navigate to 
+     * results.
+     */
     if (current === data.length - 1) {
+      window.history.pushState({}, 'home', '/') // Prohibit the user to go back to he quiz. 
       navigate('../results')
     }
-
-    dispatch({ type: 'gotoNextQuestion' })
+    else {
+      dispatch({ type: 'gotoNextQuestion' })
+    }
   }
 
   return [
-    <div id='quiz-wrapper' className="min-vh-100 d-flex align-items-center">
-      <Container key='quiz-container-key'>
+    <div
+      id='quiz-wrapper'
+      key='quiz-container-key'
+      className="min-vh-100 d-flex align-items-center"
+    >
+      <Container>
         <Row>
           <Col>
-            <Card id='quiz-card' className="text-center mx-auto custom-card-size">
+            <Card
+              id='quiz-card'
+              className="custom-card-size text-center mx-auto"
+            >
               <Card.Body>
 
                 {/* TITLE */}

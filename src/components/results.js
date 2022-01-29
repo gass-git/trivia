@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Col, Row, Container, Badge, Table, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -7,19 +7,26 @@ import { AppContext } from '../App';
 
 export default function Results() {
 
-  const { state, dispatch } = useContext(AppContext)
-  const [score, answers] = [state.score, state.answers]
+  const { state } = useContext(AppContext)
+  const [score, answers, current] = [state.score, state.answers, state.current]
   const navigate = useNavigate()
-
-  function handleClick() {
-    dispatch({ type: 'reset' })
-    navigate('/')
-  }
 
   /**
    * @abstract
    * 
-   * This component maps the answers array
+   * It's not allowed to access the results route if the 
+   * trivia has not been completed 
+   */
+  useEffect(() => {
+    if (current !== answers.length - 1) {
+      navigate('/')
+    }
+  }, [current, answers.length, navigate])
+
+  /**
+   * @abstract
+   * 
+   * Component that map() the answers array
    * to build the table body.
    */
   const TableBody = () => {
@@ -44,7 +51,7 @@ export default function Results() {
               {/* QUESTION */}
               <td>{answer.question}</td>
 
-              {/* CHECK OR CROSS ICON */}
+              {/* CHECK AND CROSS ICONS */}
               <td className="align-middle" style={{ textAlign: 'center' }}>
                 {
                   answer.isCorrect ?
@@ -94,13 +101,16 @@ export default function Results() {
 
       <Row className="mt-4 mb-5">
         <Col style={{ textAlign: 'center' }}>
+
+          {/* PLAY AGAIN BUTTON */}
           <Button
             className='btn-lg'
             variant='outline-dark'
-            onClick={() => handleClick()}
+            onClick={() => navigate('/')}
           >
             Play again ?
           </Button>
+
         </Col>
       </Row>
 
