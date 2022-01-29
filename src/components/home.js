@@ -25,7 +25,10 @@ export default function Home() {
   }, [current, answers, dispatch])
 
   return [
-    <div id='home-wrapper' className="min-vh-100 d-flex align-items-center">
+    <div
+      id='home-wrapper'
+      key='home-key'
+      className="min-vh-100 d-flex align-items-center">
       <Container className="align-middle" style={{ width: '450px' }}>
 
         {/* WELCOME MESSAGE */}

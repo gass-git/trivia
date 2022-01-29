@@ -68,7 +68,10 @@ export default function Results() {
   }
 
   return [
-    <Container className="mt-5" key='results-container-key'>
+    <Container
+      key='results-key'
+      className="mt-5"
+    >
 
       {/* SCORE INFO */}
       <Row>

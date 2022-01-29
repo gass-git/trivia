@@ -22,7 +22,6 @@ export default function Quiz() {
    * the question strings.
    * 
    * specialChars array can be found in 'src/data/' directory
-   * 
    */
   specialChars.forEach(special => {
     question = question.replace(special.code, special.char)
@@ -53,7 +52,7 @@ export default function Quiz() {
   return [
     <div
       id='quiz-wrapper'
-      key='quiz-container-key'
+      key='quiz-key'
       className="min-vh-100 d-flex align-items-center"
     >
       <Container>
