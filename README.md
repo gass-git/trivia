@@ -15,7 +15,7 @@ npm start
 
 ## Styles
 
-All styles can be found in `custom.scss`
+All styles can be found in `src/custom.scss`
 
 ## Fixing question strings
 
@@ -25,5 +25,5 @@ updated with more special HTML codes in case is necessary.
 
 ## CSS Hover effect for touch screens
 
-Is disabled to enhance the use experience. It can be enabled or disabled
+Is disabled to enhance the user experience. It can be enabled or disabled
 in `src/custom.scss`
