@@ -17,7 +17,7 @@ export const AppContext = React.createContext(null)
  * @abstract State managment
  */
 function appReducer(state, action) {
-  const { data, answers, score, current, fetchErrorCount } = state
+  const { data, answers, score, current, fetchErrorCount, isFetchPending } = state
 
   switch (action.type) {
 
@@ -72,7 +72,8 @@ function appReducer(state, action) {
     case 'update data':
       return {
         ...state,
-        data: action.data
+        data: action.data,
+        isFetchPending: false
       }
 
     case 'reset state':
@@ -81,7 +82,8 @@ function appReducer(state, action) {
         answers: [],
         score: 0,
         current: 0,
-        fetchErrorCount: 0
+        fetchErrorCount: 0,
+        isFetchPending: true
       }
 
     default:
@@ -94,17 +96,18 @@ const initialState = {
   answers: [],
   score: 0,
   current: 0,
-  fetchErrorCount: 0
+  fetchErrorCount: 0,
+  isFetchPending: true
 }
 
 export default function App() {
 
   const [state, dispatch] = useReducer(appReducer, initialState)
-  const fetchErrorCount = state.fetchErrorCount
+  const [fetchErrorCount, isFetchPending] = [state.fetchErrorCount, state.isFetchPending]
 
   useEffect(() => {
     GetData({ fetchErrorCount, dispatch })
-  }, [state.fetchErrorCount])
+  }, [fetchErrorCount, isFetchPending])
 
   return [
     <AppContext.Provider value={{ state, dispatch }}>

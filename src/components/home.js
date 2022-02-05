@@ -22,7 +22,7 @@ export default function Home() {
     if (current === answers.length - 1) {
       dispatch({ type: 'reset state' })
     }
-  }, [current, answers, dispatch])
+  }, [])
 
   return [
     <div
