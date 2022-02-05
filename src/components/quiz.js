@@ -34,7 +34,7 @@ export default function Quiz() {
    */
   function handleClick(answer) {
 
-    dispatch({ type: 'checkAnswer', answer: answer })
+    dispatch({ type: 'check answer', answer: answer })
 
     /**
      * Once the user answers the last question, navigate to 
@@ -45,7 +45,7 @@ export default function Quiz() {
       navigate('../results')
     }
     else {
-      dispatch({ type: 'gotoNextQuestion' })
+      dispatch({ type: 'go to next question' })
     }
   }
 

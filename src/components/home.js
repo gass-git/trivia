@@ -20,7 +20,7 @@ export default function Home() {
    */
   useEffect(() => {
     if (current === answers.length - 1) {
-      dispatch({ type: 'reset' })
+      dispatch({ type: 'reset state' })
     }
   }, [current, answers, dispatch])
 

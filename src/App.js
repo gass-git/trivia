@@ -3,12 +3,13 @@ import { Routes, Route } from "react-router-dom";
 import { specialChars } from "../src/data/specialChars.js";
 
 // API
-import getData from './api/getData';
+import GetData from './api/getData';
 
 // Components
 import Quiz from './components/quiz';
 import Results from './components/results';
 import Home from './components/home';
+
 
 export const AppContext = React.createContext(null)
 
@@ -16,11 +17,17 @@ export const AppContext = React.createContext(null)
  * @abstract State managment
  */
 function appReducer(state, action) {
-  const { data, answers, score, current } = state
+  const { data, answers, score, current, fetchErrorCount } = state
 
   switch (action.type) {
 
-    case 'checkAnswer':
+    case 'fetch error':
+      return {
+        ...state,
+        fetchErrorCount: fetchErrorCount + 1
+      }
+
+    case 'check answer':
       let obj = {}
       let newScore
       let question = data[current].question
@@ -56,24 +63,25 @@ function appReducer(state, action) {
         score: newScore
       }
 
-    case 'gotoNextQuestion':
+    case 'go to next question':
       return {
         ...state,
         current: current + 1
       }
 
-    case 'updateData':
+    case 'update data':
       return {
         ...state,
         data: action.data
       }
 
-    case 'reset':
+    case 'reset state':
       return {
         ...state,
         answers: [],
         score: 0,
-        current: 0
+        current: 0,
+        fetchErrorCount: 0
       }
 
     default:
@@ -81,23 +89,22 @@ function appReducer(state, action) {
   }
 }
 
-/**
- * @abstract Initial State
- */
 const initialState = {
   data: null,
   answers: [],
   score: 0,
-  current: 0
+  current: 0,
+  fetchErrorCount: 0
 }
 
 export default function App() {
 
   const [state, dispatch] = useReducer(appReducer, initialState)
+  const fetchErrorCount = state.fetchErrorCount
 
   useEffect(() => {
-    getData({ dispatch })
-  }, [])
+    GetData({ fetchErrorCount, dispatch })
+  }, [state.fetchErrorCount])
 
   return [
     <AppContext.Provider value={{ state, dispatch }}>
