@@ -17,10 +17,9 @@ export default function GetData({ fetchErrorCount, dispatch }) {
           data: dataArray
         })
       }
-
     })
     .catch((error) => {
-      dispatch({ type: 'fetch error' })
+      dispatch({ type: 'API fetching error' })
       console.log(error)
     })
 

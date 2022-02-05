@@ -21,7 +21,7 @@ function appReducer(state, action) {
 
   switch (action.type) {
 
-    case 'fetch error':
+    case 'API fetching error':
       return {
         ...state,
         fetchErrorCount: fetchErrorCount + 1

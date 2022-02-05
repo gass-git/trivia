@@ -69,7 +69,7 @@ export default function Quiz() {
                   className="mt-3 p-3"
                   style={{ minHeight: '140px' }}
                 >
-                  <h2>{title ? title : null}</h2>
+                  <h2>{title}</h2>
                 </Card.Title>
 
                 {/* QUESTION */}
@@ -77,7 +77,7 @@ export default function Quiz() {
                   className='p-3 fs-20'
                   style={{ minHeight: '150px' }}
                 >
-                  {question ? question : null}
+                  {question}
                 </Card.Text>
 
                 {/* BUTTONS */}
