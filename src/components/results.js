@@ -1,73 +1,17 @@
 import React, { useContext, useEffect } from 'react';
-import { Col, Row, Container, Badge, Table, Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Col, Row, Container, Table, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../App';
+import TableBody from './tableBody';
 
 export default function Results() {
   const { state, dispatch } = useContext(AppContext)
-  const [score, answers, current] = [state.score, state.answers, state.current]
+  const [score, answers] = [state.score, state.answers]
   const navigate = useNavigate()
 
-  /**
-   * @abstract
-   * 
-   * It's not allowed to access the results route if the 
-   * trivia has not been completed 
-   */
   useEffect(() => {
-    if (current !== answers.length - 1) {
-      navigate('/')
-    }
-    else {
-      dispatch({ type: 'deactivate quiz' })
-    }
-  }, [current, answers, dispatch, navigate])
-
-  /**
-   * @abstract
-   * 
-   * Component that map() the answers array
-   * to build the table body.
-   */
-  const TableBody = () => {
-    return [
-      <tbody key='table-body-key'>
-        {answers.map((answer) => {
-          return [
-            <tr key={answer.id}>
-
-              {/* TRUE OR FALSE BADGE */}
-              <td className="align-middle" style={{ textAlign: 'center' }}>
-                <h6>
-                  {
-                    answer.correctAnswer === 'True' ?
-                      <Badge bg="success">YES</Badge>
-                      :
-                      <Badge bg="secondary">NO</Badge>
-                  }
-                </h6>
-              </td>
-
-              {/* QUESTION */}
-              <td>{answer.question}</td>
-
-              {/* CHECK AND CROSS ICONS */}
-              <td className="align-middle" style={{ textAlign: 'center' }}>
-                {
-                  answer.isCorrect ?
-                    <FontAwesomeIcon icon={faCheck} className='check' />
-                    :
-                    <FontAwesomeIcon icon={faTimes} className='cross' />
-                }
-              </td>
-            </tr>
-          ]
-        })}
-      </tbody>
-    ]
-  }
+    dispatch({ type: 'deactivate quiz' })
+  }, [dispatch])
 
   return [
     <Container
@@ -98,7 +42,7 @@ export default function Results() {
             </thead>
 
             {/* TABLE BODY */}
-            <TableBody />
+            <TableBody answers={answers} />
 
           </Table>
         </Col>

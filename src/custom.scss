@@ -7,8 +7,8 @@ body{
 
 /* Global styles */
 .btn-lg{
-  font-size:21px!important;
-  min-width: 100px!important;
+  font-size:21px;
+  min-width: 100px;
 }
 .fs-18{
   font-size:18px;
@@ -55,26 +55,26 @@ body{
 /* Small screens */
 @media screen and (max-height: 800px) {
   #home-wrapper{
-    margin-top: -20px!important;
+    margin-top: -20px;
   }
   #quiz-wrapper{
-    margin-top: -10px!important;
+    margin-top: -10px;
   }
 }
 @media screen and (max-width: 600px) {
   #quiz-card{
-    border:none!important;
+    border:none;
   }
 }
 
 /* Touch screens */
 @media (hover: none) and (pointer: coarse) {
   #quiz-btn-false:hover {
-    background-color: transparent!important;
+    background-color: transparent;
     color: #d9534f;
   }
   #quiz-btn-true:hover {
-    background-color: transparent!important;
+    background-color: transparent;
     color:#198754;
   }
 }

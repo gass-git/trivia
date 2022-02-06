@@ -5,40 +5,27 @@ import { specialChars } from '../data/specialChars';
 import { AppContext } from '../App';
 
 export default function Quiz() {
-
-  // States
   const { state, dispatch } = useContext(AppContext)
   const [data, current] = [state.data, state.current]
-
-  // Other variables
   const navigate = useNavigate()
   const title = data[current].category
   let question = data[current].question
 
   /**
    * @abstract
-   * 
    * Loop to replace special HTML code inside
    * the question strings.
    * 
-   * specialChars array can be found in 'src/data/' directory
+   * specialChars array can be found in 'src/data/' directory.
    */
   specialChars.forEach(special => {
     question = question.replace(special.code, special.char)
   })
 
-  /**
-   * @abstract 
-   * 
-   * Handle the true and false button clicks
-   */
   function handleClick(answer) {
     dispatch({ type: 'check answer', answer: answer })
 
-    /**
-     * Once the user answers the last question, navigate to 
-     * results.
-     */
+    // Once the user answers the last question, navigate to results.
     if (current === data.length - 1) {
       dispatch({ type: 'activate results' })
       navigate('../results')
