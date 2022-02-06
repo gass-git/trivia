@@ -32,12 +32,13 @@ export default function Home() {
     <div
       id='home-wrapper'
       key='home-key'
-      className="min-vh-100 d-flex align-items-center">
-      <Container className="align-middle" style={{ width: '450px' }}>
+      className="min-vh-100 d-flex align-items-center"
+    >
+      <Container id='home-container' className="align-middle">
 
         {/* WELCOME MESSAGE */}
         <Row>
-          <Col style={{ textAlign: 'center' }}>
+          <Col className="text-center">
             <h1>Welcome to the Trivia Challenge!</h1>
           </Col>
         </Row>
@@ -60,7 +61,7 @@ export default function Home() {
 
         {/* START BUTTON */}
         <Row className="mt-4">
-          <Col style={{ textAlign: 'center' }} >
+          <Col className="text-center">
             <Button
               className='btn-lg'
               variant='outline-dark'
