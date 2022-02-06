@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default function GetData({ fetchErrorCount, dispatch }) {
+export default function GetData({ dispatch }) {
   const url = 'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean'
 
   axios.get(url)
@@ -19,8 +19,7 @@ export default function GetData({ fetchErrorCount, dispatch }) {
       }
     })
     .catch((error) => {
-      dispatch({ type: 'API fetching error' })
-      console.log(error)
+      dispatch({ type: 'API fetching error', action: error })
     })
 
 }

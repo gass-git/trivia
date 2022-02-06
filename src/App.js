@@ -10,6 +10,7 @@ export const AppContext = React.createContext(null)
 
 function appReducer(state, action) {
   const { data, answers, score, current, fetchErrorCount } = state
+  let obj, newScore, question, correctAnswer;
 
   switch (action.type) {
 
@@ -32,10 +33,10 @@ function appReducer(state, action) {
       }
 
     case 'check answer':
-      let obj = {}
-      let newScore
-      let question = data[current].question
-      let correctAnswer = data[current].correct_answer
+      obj = {}
+      newScore
+      question = data[current].question
+      correctAnswer = data[current].correct_answer
 
       // Fix question      
       specialChars.forEach(special => {
@@ -119,7 +120,7 @@ export default function App() {
   }, [fetchErrorCount, isFetchPending])
 
   return [
-    <AppContext.Provider value={{ state, dispatch }}>
+    <AppContext.Provider value={{ state, dispatch }} key='context-key'>
       <Routes>
         <Route path='*' element={<Navigate to='/' />} />
         <Route path='/' element={<Home />} />
