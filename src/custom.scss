@@ -52,6 +52,15 @@ body{
 }
 
 /* Results styles */
+#table-col{
+  max-width: 700px;
+}
+#th-one{
+  min-width: 80px;
+}
+#th-three{
+  max-width: 100px;
+}
 .check{
   color:green;
   font-size:25px;

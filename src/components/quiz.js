@@ -16,7 +16,7 @@ export default function Quiz() {
    * Loop to replace special HTML code inside
    * the question strings.
    * 
-   * specialChars array can be found in 'src/data/' directory.
+   * SpecialChars array can be found in 'src/data/' directory.
    */
   specialChars.forEach(special => {
     question = question.replace(special.code, special.char)

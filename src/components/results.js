@@ -14,42 +14,36 @@ export default function Results() {
   }, [dispatch])
 
   return [
-    <Container
-      key='results-key'
-      className="mt-5"
-    >
+    <Container key='results-key' className='mt-5'>
 
       {/* SCORE INFO */}
       <Row>
-        <Col style={{ textAlign: 'center' }}>
+        <Col className='text-center'>
           <h2>You scored</h2>
           <h3>{score} / {answers.length}</h3>
         </Col>
       </Row>
 
-      {/* TABLE */}
-      <Row className="mt-4 justify-content-center">
-        <Col style={{ maxWidth: '700px' }}>
-          <Table bordered hover>
+      <Row className='mt-4 justify-content-center'>
+        <Col id='table-col'>
 
-            {/* TABLE HEADER */}
+          {/* TABLE */}
+          <Table bordered hover>
             <thead>
               <tr>
-                <th style={{ minWidth: '80px', textAlign: 'center' }}>True?</th>
-                <th style={{ textAlign: 'center' }}>Question</th>
-                <th style={{ maxWidth: '100px', textAlign: 'center' }}>Correct?</th>
+                <th id='th-one' className='text-center'>True?</th>
+                <th id='th-two' className='text-center'>Question</th>
+                <th id='th-three' className='text-center'>Correct?</th>
               </tr>
             </thead>
-
-            {/* TABLE BODY */}
             <TableBody answers={answers} />
-
           </Table>
+
         </Col>
       </Row>
 
       <Row className="mt-4 mb-5">
-        <Col style={{ textAlign: 'center' }}>
+        <Col className='text-center'>
 
           {/* PLAY AGAIN BUTTON */}
           <Button
