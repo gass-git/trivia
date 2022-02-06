@@ -6,8 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../App';
 
 export default function Results() {
-
-  const { state } = useContext(AppContext)
+  const { state, dispatch } = useContext(AppContext)
   const [score, answers, current] = [state.score, state.answers, state.current]
   const navigate = useNavigate()
 
@@ -21,7 +20,10 @@ export default function Results() {
     if (current !== answers.length - 1) {
       navigate('/')
     }
-  }, [current, answers.length, navigate])
+    else {
+      dispatch({ type: 'deactivate quiz' })
+    }
+  }, [current, answers, dispatch, navigate])
 
   /**
    * @abstract

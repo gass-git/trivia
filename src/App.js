@@ -1,23 +1,15 @@
 import React, { useEffect, useReducer } from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { specialChars } from "../src/data/specialChars.js";
-
-// API
 import GetData from './api/getData';
-
-// Components
 import Quiz from './components/quiz';
 import Results from './components/results';
 import Home from './components/home';
 
-
 export const AppContext = React.createContext(null)
 
-/**
- * @abstract State managment
- */
 function appReducer(state, action) {
-  const { data, answers, score, current, fetchErrorCount, isFetchPending } = state
+  const { data, answers, score, current, fetchErrorCount } = state
 
   switch (action.type) {
 
@@ -25,6 +17,18 @@ function appReducer(state, action) {
       return {
         ...state,
         fetchErrorCount: fetchErrorCount + 1
+      }
+
+    case 'activate quiz':
+      return {
+        ...state,
+        isQuizActive: true
+      }
+
+    case 'activate results':
+      return {
+        ...state,
+        isResultsActive: true
       }
 
     case 'check answer':
@@ -69,6 +73,12 @@ function appReducer(state, action) {
         current: current + 1
       }
 
+    case 'deactivate quiz':
+      return {
+        ...state,
+        isQuizActive: false
+      }
+
     case 'update data':
       return {
         ...state,
@@ -77,14 +87,7 @@ function appReducer(state, action) {
       }
 
     case 'reset state':
-      return {
-        ...state,
-        answers: [],
-        score: 0,
-        current: 0,
-        fetchErrorCount: 0,
-        isFetchPending: true
-      }
+      return initialState
 
     default:
       return initialState
@@ -97,13 +100,19 @@ const initialState = {
   score: 0,
   current: 0,
   fetchErrorCount: 0,
-  isFetchPending: true
+  isFetchPending: true,
+  isQuizActive: false,
+  isResultsActive: false
 }
 
 export default function App() {
-
   const [state, dispatch] = useReducer(appReducer, initialState)
-  const [fetchErrorCount, isFetchPending] = [state.fetchErrorCount, state.isFetchPending]
+  const [
+    fetchErrorCount,
+    isFetchPending,
+    isQuizActive,
+    isResultsActive
+  ] = [state.fetchErrorCount, state.isFetchPending, state.isQuizActive, state.isResultsActive]
 
   useEffect(() => {
     GetData({ fetchErrorCount, dispatch })
@@ -112,10 +121,10 @@ export default function App() {
   return [
     <AppContext.Provider value={{ state, dispatch }}>
       <Routes>
-        <Route path='*' element={<Home />} />
+        <Route path='*' element={<Navigate to='/' />} />
         <Route path='/' element={<Home />} />
-        <Route path='quiz' element={<Quiz />} />
-        <Route path='results' element={<Results />} />
+        <Route path='quiz' element={isQuizActive ? <Quiz /> : <Navigate to='/' />} />
+        <Route path='results' element={isResultsActive ? <Results /> : <Navigate to='/' />} />
       </Routes>
     </AppContext.Provider>
   ]

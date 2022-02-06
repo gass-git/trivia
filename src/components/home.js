@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../App';
 
 export default function Home() {
-
   const { state, dispatch } = useContext(AppContext)
   const [current, answers] = [state.current, state.answers]
   const navigate = useNavigate()
@@ -22,7 +21,12 @@ export default function Home() {
     if (current === answers.length - 1) {
       dispatch({ type: 'reset state' })
     }
-  }, [])
+  })
+
+  function handleClick() {
+    dispatch({ type: 'activate quiz' })
+    navigate('../quiz')
+  }
 
   return [
     <div
@@ -60,7 +64,7 @@ export default function Home() {
             <Button
               className='btn-lg'
               variant='outline-dark'
-              onClick={() => navigate('../quiz')}
+              onClick={() => handleClick()}
             >
               <span className='m-3'>Get started</span>
             </Button>

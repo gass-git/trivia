@@ -33,7 +33,6 @@ export default function Quiz() {
    * Handle the true and false button clicks
    */
   function handleClick(answer) {
-
     dispatch({ type: 'check answer', answer: answer })
 
     /**
@@ -41,7 +40,7 @@ export default function Quiz() {
      * results.
      */
     if (current === data.length - 1) {
-      window.history.pushState({}, 'home', '/') // Prohibit the user to go back to he quiz. 
+      dispatch({ type: 'activate results' })
       navigate('../results')
     }
     else {
