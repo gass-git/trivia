@@ -39,46 +39,40 @@ export default function Quiz() {
     <div
       id='quiz-wrapper'
       key='quiz-key'
-      className="min-vh-100 d-flex align-items-center"
+      className='min-vh-100 d-flex align-items-center'
     >
       <Container>
         <Row>
           <Col>
             <Card
               id='quiz-card'
-              className="custom-card-size text-center mx-auto"
+              className='custom-card-size text-center mx-auto'
             >
               <Card.Body>
 
                 {/* TITLE */}
-                <Card.Title
-                  className="mt-3 p-3"
-                  style={{ minHeight: '140px' }}
-                >
+                <Card.Title id='card-title' className='mt-3 p-3'>
                   <h2>{title}</h2>
                 </Card.Title>
 
                 {/* QUESTION */}
-                <Card.Text
-                  className='p-3 fs-20'
-                  style={{ minHeight: '150px' }}
-                >
+                <Card.Text id='card-text' className='p-3 fs-20'>
                   {question}
                 </Card.Text>
 
                 {/* BUTTONS */}
                 <Button
-                  id="quiz-btn-false"
-                  className="m-2 btn-lg"
-                  variant="outline-danger"
+                  id='quiz-btn-false'
+                  className='m-2 btn-lg'
+                  variant='outline-danger'
                   onClick={() => handleClick('False')}
                 >
                   False
                 </Button>
                 <Button
-                  id="quiz-btn-true"
-                  className="m-2 btn-lg"
-                  variant="outline-success"
+                  id='quiz-btn-true'
+                  className='m-2 btn-lg'
+                  variant='outline-success'
                   onClick={() => handleClick('True')}
                 >
                   True
@@ -86,7 +80,7 @@ export default function Quiz() {
 
               </Card.Body>
 
-              <Card.Text className="mb-3 fs-18">
+              <Card.Text className='mb-3 fs-18'>
                 {current + 1} of {data.length}
               </Card.Text>
 

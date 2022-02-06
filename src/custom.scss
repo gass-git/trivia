@@ -37,6 +37,12 @@ body{
 }
 
 /* Quiz styles */
+#card-title{
+  min-height: 140px;
+}
+#card-text{
+  min-height: 150px;
+}
 #quiz-wrapper{
   margin-top: -80px;
 }
