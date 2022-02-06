@@ -11,13 +11,13 @@ export default function TableBody({ answers }) {
           <tr key={answer.id}>
 
             {/* TRUE OR FALSE BADGE */}
-            <td className="align-middle" style={{ textAlign: 'center' }}>
+            <td className='align-middle text-center'>
               <h6>
                 {
                   answer.correctAnswer === 'True' ?
-                    <Badge bg="success">YES</Badge>
+                    <Badge bg='success'>YES</Badge>
                     :
-                    <Badge bg="secondary">NO</Badge>
+                    <Badge bg='secondary'>NO</Badge>
                 }
               </h6>
             </td>
@@ -26,7 +26,7 @@ export default function TableBody({ answers }) {
             <td>{answer.question}</td>
 
             {/* CHECK AND CROSS ICONS */}
-            <td className="align-middle" style={{ textAlign: 'center' }}>
+            <td className='align-middle text-center'>
               {
                 answer.isCorrect ?
                   <FontAwesomeIcon icon={faCheck} className='check' />
