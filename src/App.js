@@ -10,10 +10,9 @@ export const AppContext = React.createContext(null)
 
 function appReducer(state, action) {
   const { data, answers, score, current, fetchErrorCount } = state
-  let obj, newScore, question, correctAnswer;
+  let [obj, question, newScore] = [{}, null, null]
 
   switch (action.type) {
-
     case 'API fetching error':
       return {
         ...state,
@@ -33,27 +32,18 @@ function appReducer(state, action) {
       }
 
     case 'check answer':
-      obj = {}
-      newScore
       question = data[current].question
-      correctAnswer = data[current].correct_answer
 
       // Fix question      
       specialChars.forEach(special => {
         question = question.replace(special.code, special.char)
       })
 
-      /** 
-       * @abstract 
-       * 
-       * Populate the object and update the
-       * score.
-       */
       obj.id = current
       obj.question = question
-      obj.correctAnswer = correctAnswer
+      obj.correctAnswer = data[current].correct_answer
 
-      if (action.answer === correctAnswer) {
+      if (action.answer === data[current].correct_answer) {
         obj.isCorrect = true
         newScore = score + 1
       }
@@ -108,12 +98,7 @@ const initialState = {
 
 export default function App() {
   const [state, dispatch] = useReducer(appReducer, initialState)
-  const [
-    fetchErrorCount,
-    isFetchPending,
-    isQuizActive,
-    isResultsActive
-  ] = [state.fetchErrorCount, state.isFetchPending, state.isQuizActive, state.isResultsActive]
+  const { fetchErrorCount, isFetchPending, isQuizActive, isResultsActive } = state
 
   useEffect(() => {
     GetData({ fetchErrorCount, dispatch })
