@@ -4,10 +4,10 @@ import { Badge } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-export default function TableBody({ answers }) {
+export default function TableBody(props) {
   return [
     <tbody key='table-body-key'>
-      {answers.map((answer) => {
+      {props.answers.map((answer) => {
         return [
           <tr key={answer.id}>
 

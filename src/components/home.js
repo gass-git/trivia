@@ -5,17 +5,15 @@ import { AppContext } from '../App';
 
 export default function Home() {
   const { state, dispatch } = useContext(AppContext)
-  const [current, answers] = [state.current, state.answers]
+  const { current, answers } = state
   const navigate = useNavigate()
 
   /**
    * @abstract
-   * 
    * Reset the state only if the trivia has
    * been completed. This condition allows the user
    * to navigate back to home and forward to the trivia
    * and continue where he left of.
-   * 
    */
   useEffect(() => {
     if (current === answers.length - 1) {

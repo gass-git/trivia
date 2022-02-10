@@ -6,7 +6,7 @@ import { AppContext } from '../App';
 
 export default function Quiz() {
   const { state, dispatch } = useContext(AppContext)
-  const [data, current] = [state.data, state.current]
+  const { data, current } = state
   const navigate = useNavigate()
   const title = data[current].category
   let question = data[current].question
@@ -15,8 +15,6 @@ export default function Quiz() {
    * @abstract
    * Loop to replace special HTML code inside
    * the question strings.
-   * 
-   * SpecialChars array can be found in 'src/data/' directory.
    */
   specialChars.forEach(special => {
     question = question.replace(special.code, special.char)

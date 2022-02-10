@@ -6,7 +6,7 @@ import TableBody from './tableBody';
 
 export default function Results() {
   const { state, dispatch } = useContext(AppContext)
-  const [score, answers] = [state.score, state.answers]
+  const { score, answers } = state
   const navigate = useNavigate()
 
   useEffect(() => {
