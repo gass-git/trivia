@@ -4,12 +4,12 @@ import GetData from './api/getData';
 import Quiz from './components/quiz';
 import Results from './components/results';
 import Home from './components/home';
-import AppReducer from './appReducer.js';
+import { AppReducer } from './appReducer.js';
 import { initialState } from './appReducer.js';
 
 export const AppContext = React.createContext(null)
 
-export default function App() {
+export function App() {
   const [state, dispatch] = useReducer(AppReducer, initialState)
   const { fetchErrorCount, isFetchPending, isQuizActive, isResultsActive } = state
 
@@ -29,4 +29,3 @@ export default function App() {
   ]
 }
 
-export { initialState }

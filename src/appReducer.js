@@ -11,7 +11,7 @@ export const initialState = {
   isResultsActive: false
 }
 
-export default function AppReducer(state, action) {
+export function AppReducer(state, action) {
   const { data, answers, score, current, fetchErrorCount } = state
   let [obj, question, newScore] = [{}, null, null]
 
