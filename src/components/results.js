@@ -3,14 +3,16 @@ import { Col, Row, Container, Table, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../App';
 import TableBody from './tableBody';
+import { ACTIONS } from '../appReducer';
 
 export default function Results() {
   const { state, dispatch } = useContext(AppContext)
   const { score, answers } = state
   const navigate = useNavigate()
+  const { DEACTIVATE_QUIZ } = ACTIONS;
 
   useEffect(() => {
-    dispatch({ type: 'deactivate quiz' })
+    dispatch(DEACTIVATE_QUIZ)
   }, [dispatch])
 
   return [

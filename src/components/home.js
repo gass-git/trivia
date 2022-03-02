@@ -2,11 +2,13 @@ import React, { useContext, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../App';
+import { ACTIONS } from '../appReducer';
 
 export default function Home() {
   const { state, dispatch } = useContext(AppContext)
   const { current, answers } = state
   const navigate = useNavigate()
+  const { RESET_STATE, ACTIVATE_QUIZ } = ACTIONS;
 
   /**
    * @abstract
@@ -17,12 +19,12 @@ export default function Home() {
    */
   useEffect(() => {
     if (current === answers.length - 1) {
-      dispatch({ type: 'reset state' })
+      dispatch(RESET_STATE)
     }
   })
 
   function handleClick() {
-    dispatch({ type: 'activate quiz' })
+    dispatch(ACTIVATE_QUIZ)
     navigate('../quiz')
   }
 

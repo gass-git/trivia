@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Card, Row, Col, Container } from 'react-bootstrap';
 import { specialChars } from '../data/specialChars';
 import { AppContext } from '../App';
+import { ACTIONS } from '../appReducer';
 
 export default function Quiz() {
   const { state, dispatch } = useContext(AppContext)
@@ -10,6 +11,8 @@ export default function Quiz() {
   const navigate = useNavigate()
   const title = data[current].category
   let question = data[current].question
+
+  const { ACTIVATE_RESULTS, GO_TO_NEXT_QUESTION } = ACTIONS;
 
   /**
    * @abstract
@@ -25,11 +28,11 @@ export default function Quiz() {
 
     // Once the user answers the last question, navigate to results.
     if (current === data.length - 1) {
-      dispatch({ type: 'activate results' })
+      dispatch(ACTIVATE_RESULTS)
       navigate('../results')
     }
     else {
-      dispatch({ type: 'go to next question' })
+      dispatch(GO_TO_NEXT_QUESTION)
     }
   }
 

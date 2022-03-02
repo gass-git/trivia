@@ -11,30 +11,41 @@ export const initialState = {
   isResultsActive: false
 }
 
+export const ACTIONS = {
+  API_FETCH_ERROR: { type: 'API fetch error' },
+  ACTIVATE_QUIZ: { type: 'activate quiz' },
+  ACTIVATE_RESULTS: { type: 'activate results' },
+  CHECK_ANSWER: { type: 'check answer' },
+  GO_TO_NEXT_QUESTION: { type: 'go to next question' },
+  DEACTIVATE_QUIZ: { type: 'deactivate quiz' },
+  UPDATE_DATA: { type: 'update data' },
+  RESET_STATE: { type: 'reset state' }
+}
+
 export function AppReducer(state, action) {
   const { data, answers, score, current, fetchErrorCount } = state
   let [obj, question, newScore] = [{}, null, null]
 
   switch (action.type) {
-    case 'API fetching error':
+    case ACTIONS.API_FETCH_ERROR.type:
       return {
         ...state,
         fetchErrorCount: fetchErrorCount + 1
       }
 
-    case 'activate quiz':
+    case ACTIONS.ACTIVATE_QUIZ.type:
       return {
         ...state,
         isQuizActive: true
       }
 
-    case 'activate results':
+    case ACTIONS.ACTIVATE_RESULTS.type:
       return {
         ...state,
         isResultsActive: true
       }
 
-    case 'check answer':
+    case ACTIONS.CHECK_ANSWER.type:
       question = data[current].question
 
       // Fix question      
@@ -61,29 +72,29 @@ export function AppReducer(state, action) {
         score: newScore
       }
 
-    case 'go to next question':
+    case ACTIONS.GO_TO_NEXT_QUESTION.type:
       return {
         ...state,
         current: current + 1
       }
 
-    case 'deactivate quiz':
+    case ACTIONS.DEACTIVATE_QUIZ.type:
       return {
         ...state,
         isQuizActive: false
       }
 
-    case 'update data':
+    case ACTIONS.UPDATE_DATA.type:
       return {
         ...state,
         data: action.data,
         isFetchPending: false
       }
 
-    case 'reset state':
+    case ACTIONS.RESET_STATE.type:
       return initialState
 
     default:
-      return initialState
+      return state;
   }
 }
