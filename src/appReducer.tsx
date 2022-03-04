@@ -1,6 +1,6 @@
 import { specialChars } from "./data/specialChars";
 
-const initialState = {
+const initialState: object = {
   data: null,
   answers: [],
   score: 0,

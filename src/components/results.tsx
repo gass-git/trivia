@@ -13,7 +13,7 @@ export default function Results(): JSX.Element {
 
   useEffect(() => {
     dispatch({ type: DEACTIVATE_QUIZ })
-  }, [dispatch])
+  })
 
   return (
     <Container key='results-key' className='mt-5'>
