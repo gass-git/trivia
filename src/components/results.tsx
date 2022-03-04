@@ -5,17 +5,17 @@ import { AppContext } from '../App';
 import TableBody from './tableBody';
 import { ACTIONS } from '../appReducer';
 
-export default function Results() {
+export default function Results(): JSX.Element {
   const { state, dispatch } = useContext(AppContext)
   const { score, answers } = state
   const navigate = useNavigate()
   const { DEACTIVATE_QUIZ } = ACTIONS;
 
   useEffect(() => {
-    dispatch(DEACTIVATE_QUIZ)
+    dispatch({ type: DEACTIVATE_QUIZ })
   }, [dispatch])
 
-  return [
+  return (
     <Container key='results-key' className='mt-5'>
 
       {/* SCORE INFO */}
@@ -60,5 +60,5 @@ export default function Results() {
       </Row>
 
     </Container >
-  ]
+  )
 }

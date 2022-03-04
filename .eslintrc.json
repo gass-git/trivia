@@ -1,6 +1,6 @@
 {
     "env": {
-        "es2021": true,
+        "es2021": false,
         "node": true
     },
     "extends": [
@@ -17,6 +17,5 @@
     "plugins": [
         "react"
     ],
-    "rules": {
-    }
+    "rules": {}
 }

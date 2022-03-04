@@ -1,6 +1,6 @@
-import { specialChars } from "../src/data/specialChars.js";
+import { specialChars } from "./data/specialChars";
 
-export const initialState = {
+const initialState = {
   data: null,
   answers: [],
   score: 0,
@@ -8,49 +8,58 @@ export const initialState = {
   fetchErrorCount: 0,
   isFetchPending: true,
   isQuizActive: false,
-  isResultsActive: false
+  isResultsActive: false,
 }
 
-export const ACTIONS = {
-  API_FETCH_ERROR: { type: 'API fetch error' },
-  ACTIVATE_QUIZ: { type: 'activate quiz' },
-  ACTIVATE_RESULTS: { type: 'activate results' },
-  CHECK_ANSWER: { type: 'check answer' },
-  GO_TO_NEXT_QUESTION: { type: 'go to next question' },
-  DEACTIVATE_QUIZ: { type: 'deactivate quiz' },
-  UPDATE_DATA: { type: 'update data' },
-  RESET_STATE: { type: 'reset state' }
+const ACTIONS = {
+  FETCH_ERROR: 'API fetch error',
+  ACTIVATE_QUIZ: 'activate quiz',
+  ACTIVATE_RESULTS: 'activate results',
+  CHECK_ANSWER: 'check current answer',
+  NEXT_QUESTION: 'go to next question',
+  DEACTIVATE_QUIZ: 'deactivate quiz',
+  UPDATE_DATA: 'update all the data',
+  RESET_STATE: 'reset all the state'
 }
 
-export function AppReducer(state, action) {
+function AppReducer(state: any, action: any) {
   const { data, answers, score, current, fetchErrorCount } = state
-  let [obj, question, newScore] = [{}, null, null]
+
+  let obj: {
+    id: number | null,
+    question: string | null,
+    correctAnswer: number,
+    isCorrect: boolean | null
+  } = { id: null, question: '', correctAnswer: null, isCorrect: null }
+
+  let question: string | null = ''
+  let newScore: number | null = 0
 
   switch (action.type) {
-    case ACTIONS.API_FETCH_ERROR.type:
+    case ACTIONS.FETCH_ERROR:
       return {
         ...state,
         fetchErrorCount: fetchErrorCount + 1
       }
 
-    case ACTIONS.ACTIVATE_QUIZ.type:
+    case ACTIONS.ACTIVATE_QUIZ:
       return {
         ...state,
         isQuizActive: true
       }
 
-    case ACTIONS.ACTIVATE_RESULTS.type:
+    case ACTIONS.ACTIVATE_RESULTS:
       return {
         ...state,
         isResultsActive: true
       }
 
-    case ACTIONS.CHECK_ANSWER.type:
+    case ACTIONS.CHECK_ANSWER:
       question = data[current].question
 
       // Fix question      
-      specialChars.forEach(special => {
-        question = question.replace(special.code, special.char)
+      specialChars.forEach((special: { code: any, char: string }) => {
+        question = question!.replace(special.code, special.char)
       })
 
       obj.id = current
@@ -72,29 +81,31 @@ export function AppReducer(state, action) {
         score: newScore
       }
 
-    case ACTIONS.GO_TO_NEXT_QUESTION.type:
+    case ACTIONS.NEXT_QUESTION:
       return {
         ...state,
         current: current + 1
       }
 
-    case ACTIONS.DEACTIVATE_QUIZ.type:
+    case ACTIONS.DEACTIVATE_QUIZ:
       return {
         ...state,
         isQuizActive: false
       }
 
-    case ACTIONS.UPDATE_DATA.type:
+    case ACTIONS.UPDATE_DATA:
       return {
         ...state,
         data: action.data,
         isFetchPending: false
       }
 
-    case ACTIONS.RESET_STATE.type:
+    case ACTIONS.RESET_STATE:
       return initialState
 
     default:
       return state;
   }
 }
+
+export { initialState, ACTIONS, AppReducer };

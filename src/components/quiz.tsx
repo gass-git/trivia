@@ -5,14 +5,13 @@ import { specialChars } from '../data/specialChars';
 import { AppContext } from '../App';
 import { ACTIONS } from '../appReducer';
 
-export default function Quiz() {
+export default function Quiz(): JSX.Element {
   const { state, dispatch } = useContext(AppContext)
   const { data, current } = state
   const navigate = useNavigate()
   const title = data[current].category
   let question = data[current].question
-
-  const { ACTIVATE_RESULTS, GO_TO_NEXT_QUESTION } = ACTIONS;
+  const { ACTIVATE_RESULTS, NEXT_QUESTION, CHECK_ANSWER } = ACTIONS;
 
   /**
    * @abstract
@@ -23,20 +22,20 @@ export default function Quiz() {
     question = question.replace(special.code, special.char)
   })
 
-  function handleClick(answer) {
-    dispatch({ type: 'check answer', answer: answer })
+  function handleClick(answer: string) {
+    dispatch({ type: CHECK_ANSWER, answer: answer })
 
     // Once the user answers the last question, navigate to results.
     if (current === data.length - 1) {
-      dispatch(ACTIVATE_RESULTS)
+      dispatch({ type: ACTIVATE_RESULTS })
       navigate('../results')
     }
     else {
-      dispatch(GO_TO_NEXT_QUESTION)
+      dispatch({ type: NEXT_QUESTION })
     }
   }
 
-  return [
+  return (
     <div
       id='quiz-wrapper'
       key='quiz-key'
@@ -90,5 +89,5 @@ export default function Quiz() {
         </Row>
       </Container>
     </div>
-  ]
+  )
 }

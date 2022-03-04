@@ -4,8 +4,7 @@ import GetData from './api/getData';
 import Quiz from './components/quiz';
 import Results from './components/results';
 import Home from './components/home';
-import { AppReducer } from './appReducer.js';
-import { initialState } from './appReducer.js';
+import { AppReducer, initialState } from './appReducer';
 
 export const AppContext = React.createContext(null)
 
@@ -14,10 +13,10 @@ export function App() {
   const { fetchErrorCount, isFetchPending, isQuizActive, isResultsActive } = state
 
   useEffect(() => {
-    GetData({ fetchErrorCount, dispatch })
+    GetData({ dispatch })
   }, [fetchErrorCount, isFetchPending])
 
-  return [
+  return (
     <AppContext.Provider value={{ state, dispatch }} key='context-key'>
       <Routes>
         <Route path='*' element={<Navigate to='/' />} />
@@ -26,6 +25,6 @@ export function App() {
         <Route path='results' element={isResultsActive ? <Results /> : <Navigate to='/' />} />
       </Routes>
     </AppContext.Provider>
-  ]
+  )
 }
 

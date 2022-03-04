@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../App';
 import { ACTIONS } from '../appReducer';
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const { state, dispatch } = useContext(AppContext)
   const { current, answers } = state
   const navigate = useNavigate()
@@ -19,16 +19,16 @@ export default function Home() {
    */
   useEffect(() => {
     if (current === answers.length - 1) {
-      dispatch(RESET_STATE)
+      dispatch({ type: RESET_STATE })
     }
   })
 
   function handleClick() {
-    dispatch(ACTIVATE_QUIZ)
+    dispatch({ type: ACTIVATE_QUIZ })
     navigate('../quiz')
   }
 
-  return [
+  return (
     <div
       id='home-wrapper'
       key='home-key'
@@ -74,5 +74,5 @@ export default function Home() {
 
       </Container>
     </div>
-  ]
+  )
 }
