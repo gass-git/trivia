@@ -22,7 +22,7 @@ const initialState: stateTypes = {
   isResultsActive: false,
 }
 
-const ACTIONS = {
+const ACTIONS: Record<string, string> = {
   FETCH_ERROR: 'API fetch error',
   ACTIVATE_QUIZ: 'activate quiz',
   ACTIVATE_RESULTS: 'activate results',
