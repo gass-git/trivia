@@ -1,6 +1,17 @@
 import { specialChars } from "./data/specialChars";
 
-const initialState: object = {
+type stateTypes = {
+  data: any;
+  answers: any[];
+  score: number;
+  current: number;
+  fetchErrorCount: number;
+  isFetchPending: boolean;
+  isQuizActive: boolean;
+  isResultsActive: boolean;
+}
+
+const initialState: stateTypes = {
   data: null,
   answers: [],
   score: 0,
@@ -22,15 +33,17 @@ const ACTIONS = {
   RESET_STATE: 'reset all the state'
 }
 
-function AppReducer(state: any, action: any) {
+function AppReducer(state: stateTypes, action: any) {
   const { data, answers, score, current, fetchErrorCount } = state
 
-  let obj: {
+  type dataObjType = {
     id: number | null,
     question: string | null,
     correctAnswer: number,
     isCorrect: boolean | null
-  } = { id: null, question: '', correctAnswer: null, isCorrect: null }
+  }
+
+  let obj: dataObjType = { id: null, question: '', correctAnswer: null, isCorrect: null }
 
   let question: string | null = ''
   let newScore: number | null = 0
