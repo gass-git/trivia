@@ -3,19 +3,14 @@ import React from 'react';
 import { Badge } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
-
+import { answersTypes } from '../types';
 
 
 export default function TableBody(props: any): JSX.Element {
   return (
     <tbody key='table-body-key'>
       {
-        props.answers.map((answer: {
-          id: number;
-          correctAnswer: string;
-          question: string;
-          isCorrect: boolean;
-        }) => {
+        props.answers.map((answer: answersTypes) => {
           return (
             <tr key={answer.id}>
 

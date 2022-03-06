@@ -8,3 +8,10 @@ export type stateTypes = {
   isQuizActive: boolean;
   isResultsActive: boolean;
 }
+
+export type answersTypes = {
+  id: number;
+  correctAnswer: string;
+  question: string;
+  isCorrect: boolean;
+}
