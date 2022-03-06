@@ -22,7 +22,7 @@ export default function Quiz(): JSX.Element {
     question = question.replace(special.code, special.char)
   })
 
-  function handleClick(answer: string) {
+  function handleClick(answer: 'False' | 'True') {
     dispatch({ type: CHECK_ANSWER, answer: answer })
 
     // Once the user answers the last question, navigate to results.
