@@ -1,15 +1,5 @@
 import { specialChars } from "./data/specialChars";
-
-type stateTypes = {
-  data: any;
-  answers: any[];
-  score: number;
-  current: number;
-  fetchErrorCount: number;
-  isFetchPending: boolean;
-  isQuizActive: boolean;
-  isResultsActive: boolean;
-}
+import { stateTypes } from "./types";
 
 const initialState: stateTypes = {
   data: null,
