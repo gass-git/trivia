@@ -14,7 +14,7 @@ export default function Home(): JSX.Element {
    * Reset the state only if the trivia has
    * been completed. This condition allows the user
    * to navigate back to home and forward to the trivia
-   * and continue where he left of.
+   * and continue where left of.
    */
   useEffect(() => {
     if (current === answers.length - 1) {
