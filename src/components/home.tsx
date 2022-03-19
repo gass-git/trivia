@@ -11,7 +11,6 @@ export default function Home(): JSX.Element {
   const { RESET_STATE, ACTIVATE_QUIZ } = ACTIONS;
 
   /**
-   * @abstract
    * Reset the state only if the trivia has
    * been completed. This condition allows the user
    * to navigate back to home and forward to the trivia
