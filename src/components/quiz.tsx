@@ -14,7 +14,6 @@ export default function Quiz(): JSX.Element {
   const { ACTIVATE_RESULTS, NEXT_QUESTION, CHECK_ANSWER } = ACTIONS;
 
   /**
-   * @abstract
    * Loop to replace special HTML code inside
    * the question strings.
    */
